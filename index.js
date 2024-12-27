@@ -21,6 +21,9 @@ btn.addEventListener("click", (e) => {
     userEmail: email.value,
     userMessage: message.value,
   };
+  username.value = "";
+  email.value = "";
+  message.value = "";
   fetch("https://newspulse-server.vercel.app/api/v3/portfoliofeeds", {
     method: "post",
     body: JSON.stringify(data),
