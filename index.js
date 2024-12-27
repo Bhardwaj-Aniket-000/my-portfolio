@@ -8,3 +8,33 @@ aboutBtn.addEventListener("click", (e) => {
 aboutClosebtn.addEventListener("click", (e) => {
   showAboutPage.style.display = "none";
 });
+
+const username = document.getElementById("name");
+const email = document.getElementById("email");
+const message = document.getElementById("message");
+const btn = document.getElementById("submit-btn");
+
+btn.addEventListener("click", (e) => {
+  e.preventDefault();
+  const data = {
+    name: username.value,
+    userEmail: email.value,
+    userMessage: message.value,
+  };
+  fetch("http://localhost:3000/api/v3/portfoliofeeds", {
+    method: "post",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "Application/json",
+    },
+  })
+    .then((res) => {
+      return res.json();
+    })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
